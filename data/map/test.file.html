@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    svg{
+        background-color: aqua
+    }
+    .counties {
+        stroke: #000;
+    }
+    text.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 60px;					
+    height: 28px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script>
+
+    var width = 960,
+        height = 500;
+
+
+    var fill = d3.scaleLinear()
+        .range(["white", "darkblue"]);
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        //.style("fill","blue");
+
+getCountryCounts()
+
+    function getCountryCounts(){
+        d3.csv("csv/data_mod.csv", function(data) {
+            var ships = d3.nest()
+                .key(function(d)    { return d.country; })
+                .rollup(function(v) { return v.length;  })
+                .entries(data); 
+
+            svg.append("g")
+            .data(data)
+            .enter()
+            .append("rect")
+            console.log(ships)
+        })
+    }
+    function remCountryName(id){
+        d3.select("#id_"+id).remove();
+    }
+
+
+</script>

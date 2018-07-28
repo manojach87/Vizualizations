@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    svg{
+        background-color: aqua
+    }
+    .counties {
+        stroke: #000;
+    }
+    text.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 60px;					
+    height: 28px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script>
+
+    var width = 960,
+        height = 500;
+
+
+    var fill = d3.scaleLinear()
+        .range(["white", "darkblue"]);
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        //.style("fill","blue");
+
+    d3.json("topo/us.json", function(error, us) {
+        if (error) throw error;
+        us = topojson.feature(us, us.objects.states); // us.objects.counties
+
+        var projection = d3.geoAlbersUsa();
+
+        // Create a path generator.
+        var path = d3.geoPath()
+            .projection(projection);
+
+        var clickCt = 0; 
+
+        if (error) throw error;
+        var counties = svg.append("g")
+            .attr("class", "counties")
+            .selectAll("path")
+            .data(us.features)
+            .enter()
+            .append("g")
+            .attr("id", function(d){return "st_"+d.id;})
+            .append("path")
+            .attr("d", path)
+            .style("fill", "grey")
+            .on("mouseenter", function(d) {
+                if(clickCt==0){
+                    d3.select(this).transition().style("fill", "blue");
+                    d3.select("svg")
+                        .append("text")
+                        .attr("id","id_"+d.id)
+                        .attr("class","cl_st_tooltip")
+                        .attr("x",d3.event.clientX)
+                        .attr("y",d3.event.clientY)
+                        .style("fill", "white")
+                        .style("background-color", "green")
+                    setCountryName(d.id);
+                }
+            })
+            .on("mouseleave", function(d){
+                if(clickCt==0){
+                    d3.select(this).transition().style("fill", function(d){return "grey";})
+                    remCountryName(d.id)
+                }
+            })
+            .on("click", function(d){
+                if(clickCt==0){
+                    clickCt++;
+                    d3.select(this).style("fill", "green");
+                    d3.select("#id_"+d.id)
+                        .append("text")
+                        .attr("class","tooltip")
+                        .attr("id","id_"+d.id)
+                        .attr("x",d3.event.clientX)
+                        .attr("y",d3.event.clientY)
+                    setCountryName(d.id);
+                }
+                else{
+                    clickCt--;
+                    d3.select("#id_"+d.id).remove();
+                    d3.select(this).style("fill", function(d){
+                        return "white";
+                    })
+                    remCountryName(d.id)
+                }
+                console.log(clickCt)
+            })
+    });
+    d3.selection.prototype.moveToFront = function() {  
+      return this.each(function(){
+        this.parentNode.appendChild(this);
+      });
+    };
+    d3.selection.prototype.moveToBack = function() {  
+        return this.each(function() { 
+            var firstChild = this.parentNode.firstChild; 
+            if (firstChild) { 
+                this.parentNode.insertBefore(this, firstChild); 
+            } 
+        });
+    };
+    function setCountryName(id){
+        d3.csv("topo/us.states.csv", function(us) {
+            for (var i=0; i<us.length;i++){
+                if(+id == +us[i].state)
+                {
+                    d3.select("#id_"+id)
+                        .text(us[i].state_name)
+                }
+            }
+        })
+    }
+    function remCountryName(id){
+        d3.select("#id_"+id).remove();
+    }
+</script>
