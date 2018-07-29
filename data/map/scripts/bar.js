@@ -118,11 +118,13 @@ function loadBars()
     });
 }
 
-function sortBars(ships,svg,x,y){
+function sortBars(ships,x,y){
 
     var x0 = x.domain(ships.sort(function(a, b) { return b.value - a.value;})
         .map(function(d) { return d.country; }))
         .copy();
+
+    var svg = d3.select("#bar_chart");
 
     svg.selectAll(".bar")
         .sort(function(a, b) { return x0(a.country) - x0(b.country); });
@@ -136,9 +138,12 @@ function sortBars(ships,svg,x,y){
 };
 
 
-function drawBars(ships,svg,x,y){
+function drawBars(ships,x,y){
+
 
     var x0 = x;
+    var svg = d3.select("#bar_chart")
+
     svg.selectAll(".bar")
         .transition()
         .delay(500)
@@ -194,7 +199,7 @@ function loadBarsSum()
             car_map.set(d.country, cnt);
         });
         var iterator = car_map.keys();
-        console.log(car_map.size);
+
         for (var i = 0; i < car_map.size; i++) {
             var key = iterator.next().value;
             ships.push({"country": key, "value": +car_map.get(key)})
@@ -267,7 +272,8 @@ function loadBarsSum()
         var unsort_x = x;
         var unsort_y = y;
         var sorted=0;
-        sortBars(ships,svg,x,y);
-        drawBars(unsort_ships,unsort_svg,unsort_x,unsort_y);
+        //sortBars(ships,svg,x,y);
+        sortBars(ships,x,y);
+        //drawBars(unsort_ships,unsort_svg,unsort_x,unsort_y);
     });
 }
