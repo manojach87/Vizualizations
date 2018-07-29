@@ -16,6 +16,5 @@
         }
         St=d.St;
         //return d;
-        d3.
   });
 console.log(itr);
