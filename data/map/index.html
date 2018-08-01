@@ -10,11 +10,11 @@
 </head>
 <body>
 
-	<div id="map" style="width: 600px; height: 400px"></div>
+	<div id="map" style="width: 800px; height: 600px"></div>
 
 	<script type="text/javascript">
 	
-        var map = L.map('map').setView([-41.2858, 174.7868], 8);
+        var map = L.map('map').setView([0, 0], 2);
         mapLink = 
             '<a href="https://openstreetmap.org">OpenStreetMap</a>';
         L.tileLayer(
@@ -24,41 +24,48 @@
             }).addTo(map);
 				
 	/* Initialize the SVG layer */
-	map._initPathRoot()    
+	map._initPathRoot()
+
 
 	/* We simply pick up the SVG from the map object */
-	var svg = d3.select("#map").select("svg"),
-	g = svg.append("g");
+
 
         //d3.json("data/circles.json", function(collection) {
         d3.csv("./csv/data_mod.csv", function(collection) {
 
-            console.log(collection)
+            var feature = new Object();
+            drawMap();
+            //console.log(collection)
+            function drawMap(){
+                var svg = d3.select("#map").select("svg"),
+                    g = svg.append("g");
 
-            collection.forEach(function(d) {
-                d.LatLng = new L.LatLng(d.lat,d.lon)
-            })
+                collection.forEach(function(d) {
+                    d.LatLng = new L.LatLng(d.lat,d.lon)
+                })
 
-		var feature = g.selectAll("circle")
-			.data(collection)
-			.enter().append("circle")
-			.style("stroke", "black")
-			.style("opacity", .6)
-			.style("fill", "red")
-			.attr("r", 20);
+                //var feature = g.selectAll("circle")
+                feature = g.selectAll("circle")
+                    .data(collection)
+                    .enter().append("circle")
+                    .style("stroke", "black")
+                    .style("opacity", .6)
+                    .style("fill", "red")
+                    .attr("r", 5);
 
-		map.on("viewreset", update);
-		update();
+                map.on("viewreset", updateMap);
+                updateMap();
+            }
 
-		function update() {
-			feature.attr("transform",
-			function(d) {
-				return "translate("+
-					map.latLngToLayerPoint(d.LatLng).x +","+
-					map.latLngToLayerPoint(d.LatLng).y +")";
-				}
-			)
-		}
+            function updateMap() {
+                feature.attr("transform",
+                function(d) {
+                    return "translate("+
+                        map.latLngToLayerPoint(d.LatLng).x +","+
+                        map.latLngToLayerPoint(d.LatLng).y +")";
+                    }
+                ).attr("r",(map.getZoom()+2)/2)
+            }
 	})
 </script>
 </body>

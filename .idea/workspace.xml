@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9b286d9c-f798-42fe-91c5-f5802686eb75" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/chart/bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/bar_with_sort.html" beforeDir="false" afterPath="$PROJECT_DIR$/chart/bar_with_sort.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/css/bar.css" beforeDir="false" afterPath="$PROJECT_DIR$/chart/css/bar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/css/line.css" beforeDir="false" afterPath="$PROJECT_DIR$/chart/css/line.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/css/scatterplot.css" beforeDir="false" afterPath="$PROJECT_DIR$/chart/css/scatterplot.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/d3_chart_v4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chart/d3_chart_v4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/data/a1-cars.csv" beforeDir="false" afterPath="$PROJECT_DIR$/chart/data/a1-cars.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/data/a1-cereals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/chart/data/a1-cereals.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/data/a1-film.csv" beforeDir="false" afterPath="$PROJECT_DIR$/chart/data/a1-film.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/data/a1-grocerystoresurvey.csv" beforeDir="false" afterPath="$PROJECT_DIR$/chart/data/a1-grocerystoresurvey.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/data/a1-mutualfunds.csv" beforeDir="false" afterPath="$PROJECT_DIR$/chart/data/a1-mutualfunds.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/chart/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/line.html" beforeDir="false" afterPath="$PROJECT_DIR$/chart/line.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/scatterplot.html" beforeDir="false" afterPath="$PROJECT_DIR$/chart/scatterplot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/script/bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/chart/script/bar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/script/line.js" beforeDir="false" afterPath="$PROJECT_DIR$/chart/script/line.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/script/scatterplot.js" beforeDir="false" afterPath="$PROJECT_DIR$/chart/script/scatterplot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/script/scatterplot_v5.js" beforeDir="false" afterPath="$PROJECT_DIR$/chart/script/scatterplot_v5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/circles.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/circles.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map.zip" beforeDir="false" afterPath="$PROJECT_DIR$/data/map.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/css/bar.css" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/css/bar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/css/line.css" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/css/line.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/css/scatterplot.css" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/css/scatterplot.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/CO-EST2015-ncdata.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/CO-EST2015-ncdata.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/CO-EST2015-nydata.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/CO-EST2015-nydata.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/co-est2015-alldata.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/co-est2015-alldata.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/country.rec.counts.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/country.rec.counts.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/country.ships.count.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/country.ships.count.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/country.ships.rec.count.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/country.ships.rec.count.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/data_mod.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/data_mod.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/data_mod.zip" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/data_mod.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/ships.rec.count.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/ships.rec.count.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/unemployment-2008.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/unemployment-2008.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/csv/world-110m-country-names.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/csv/world-110m-country-names.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/scripts/bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/scripts/bar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/scripts/line.file.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/scripts/line.file.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/state.html" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/state.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/test.file.html" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/test.file.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/topo/nc-counties.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/topo/nc-counties.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/topo/ny-counties.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/topo/ny-counties.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/topo/us.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/topo/us.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/topo/us.states.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/topo/us.states.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/topo/world-110m-countries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/topo/world-110m-countries.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/topo/world-110m-countries.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/topo/world-110m-countries.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/topo/world-110m.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/topo/world-110m.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/us.html" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/us.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/us_unemployement.html" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/us_unemployement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/world.html" beforeDir="false" afterPath="$PROJECT_DIR$/data/map/world.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readSimpleCSV.html" beforeDir="false" afterPath="$PROJECT_DIR$/readSimpleCSV.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/readSimpleCSV.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/readSimpleCSV.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/us_cities_states_counties.csv" beforeDir="false" afterPath="$PROJECT_DIR$/us_cities_states_counties.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/us_cities_states_counties1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/us_cities_states_counties1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viz.XML" beforeDir="false" afterPath="$PROJECT_DIR$/viz.XML" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viz.data" beforeDir="false" afterPath="$PROJECT_DIR$/viz.data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viz.rjpcfg" beforeDir="false" afterPath="$PROJECT_DIR$/viz.rjpcfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viz.rjproj" beforeDir="false" afterPath="$PROJECT_DIR$/viz.rjproj" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/map/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#1134#1492#0" />
+                <element signature="e#1470#1649#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/data/map/index.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="22" />
+    <option name="width" value="1244" />
+    <option name="height" value="778" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Vizz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vizz" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vizz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vizz" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vizz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vizz" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9b286d9c-f798-42fe-91c5-f5802686eb75" name="Default" comment="" />
+      <created>1533095987125</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1533095987125</updated>
+      <workItem from="1533095993530" duration="2183000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2183000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24305004" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/data/map/bar.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/map/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#1134#1492#0" />
+            <element signature="e#1470#1649#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
