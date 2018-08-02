@@ -12,7 +12,7 @@ u    { color: blue}
 span {color: black}
 /*p    {width: 343px}*/
 #idSidebar          { width: 200px ; height: 600px; background-color: azure    ; display: inline-block; alignment: top; vertical-align: top}
-#idSidebarRight     { width: 200px ; height: 600px; /*background-color: azure    ;*/ display: inline-block; alignment: top; vertical-align: top}
+#idSidebarRight     { width: 400px ; height: 600px; /*background-color: azure    ;*/ display: inline-block; alignment: top; vertical-align: top}
 #idMainContent      { width: 800px; height: 290px; /*background-image: url("https://webpages.uncc.edu/machary2/image/backgroundTile.png") ;*/ display: inline-block; }
 #idMainContent2     { width: 800px; height: 310px; /*background-image: url("https://webpages.uncc.edu/machary2/image/backgroundTile.png") ;*/ display: inline-block; }
 #idFooterContent    { width: 1203px; height: 100px; background-color: #F5F5F5  ; display: inline-block; font-size: small; border-bottom-style: solid; border-color: azure; border-top: black}

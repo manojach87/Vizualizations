@@ -16,6 +16,7 @@
 
 .x.axis path {
     display: none;
+    stroke: #000;
 }
 
 .bar_label {

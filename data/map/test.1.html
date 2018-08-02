@@ -22,10 +22,10 @@
     </div>
     <div id="idSidebar">
 
-        X-Axis: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select onchange="changeXAxis();" id="xAxisMenu" ></select><br/>
-        Y-Axis: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select onchange="changeYAxis();" id="yAxisMenu"></select><br/>
-        Color By: &nbsp;<select onchange="redraw(this.value);/*bar(this.value);*/" id="colorMenu"></select><br/>
-        Count By: &nbsp;<select onchange="redraw(this.value);" id="dropdown"></select><br/>
+        X-Axis:<br/><select onchange="changeXAxis();" id="xAxisMenu" ></select><br/>
+        Y-Axis:<br/><select onchange="changeYAxis();" id="yAxisMenu"></select><br/>
+        Color By:<br/><select id="colorMenu"></select><br/>
+        Count By:<br/><select onchange="redraw(this.value);" id="dropdown"></select><br/>
     </div>
     <div style="display: inline-block; width: 800px; height: 600px;">
         <div id="idMainContent"><div id="map" style="width: 800px; height: 290px"></div></div>
@@ -92,6 +92,8 @@
         .attr("class", "tooltip")
         .style("opacity", 0);
 
+    // var svgLegend = new Object();
+    // var legend = new Object();
     function getHeaders(arr) {
         arr.forEach(function (row,i) {
             if(i==0) console.log(Object.keys(row));
@@ -104,9 +106,10 @@
     function changeXAxis(){
         var x = document.getElementById("xAxisMenu").value;
         xLabel = x;
-        xScale.domain([d3.min(shipData, xValue)-1, d3.max(shipData, xValue)+1]);
+        xScale.domain([d3.min(shipData, xValue)-10, d3.max(shipData, xValue)+1]);
         svg.selectAll(".x.axis")
             .call(xAxis).select(".label").text(xLabel);
+        console.log(x)
         changePos();
     };
     function changeYAxis(){
@@ -115,6 +118,7 @@
         yScale.domain([d3.min(shipData, yValue)-1, d3.max(shipData, yValue)+1]);
         svg.selectAll(".y.axis")
             .call(yAxis).select(".label").text(yLabel);
+        console.log(y)
         changePos();
     };
     function changeColorCategories(){
@@ -180,113 +184,110 @@
         d3.selectAll(class_name).transition().duration(200).style("opacity", 1);
     }
 
-    function redraw(colorBy){
-        d3.select("#plot").select("svg").remove()
-        var shipData = [];
+    d3.csv("./csv/data_mod.csv", function(collection) {
 
-        // setup fill color
-        var cValue = function(d) { return d[colorBy];},
-            color = d3.scale.category10();
+        var feature = new Object();
+        var dataValues = Object.keys(d3.values(collection)[0]);
 
-        // add the graph canvas to the body of the webpage
-        var svg = d3.select("#plot").append("svg")
-            .attr("width", width + margin.left + margin.right + 25)
-            .attr("height", height + margin.top + margin.bottom +15)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        //Load Options
 
-        // add the tooltip area to the webpage
-        var tooltip = d3.select("#plot").append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
+        loadAxisOptions(dataValues, "x"); //Options for xAxis
+        loadAxisOptions(dataValues, "y"); //Options for xAxis
+        loadColorByOptions(dataValues);   //Options for Color Code
+        loadDistinctCountOptions(dataValues);   //Options for Distinct Count Column
 
-        d3.selectAll("#idSidebarRight").selectAll("svg").remove().transition().delay(500);
+        drawMap();
+        redraw1("country");
+        //console.log(collection)
+        function drawMap(){
+            var svg = d3.select("#map").select("svg"),
+                g = svg.append("g");
 
-        d3.csv("csv/data_mod.csv", function(error, data) {
-            //console.log(data.keys)
-            //getHeaders(data)
+            collection.forEach(function(d) {
+                d.LatLng = new L.LatLng(d.lat,d.lon)
+            })
 
-
-            //shipData = data;
-            // don't want dots overlapping axis, so add in buffer to data domain
-            xScale.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1]);
-            yScale.domain([d3.min(data, yValue)-1, d3.max(data, yValue)+1]);
-            // x-axis
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("id", "xaxis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis)
-                .append("text")
-                .attr("id", "xlabel")
-                .attr("class", "label")
-                .attr("x", width/2)
-                .attr("y", 35)
-                .style("text-anchor", "end")
-                .style("font-size", "16px")
-                .text(xLabel);
-            // y-axis
-            svg.append("g")
-                .attr("class", "y axis")
-                .call(yAxis)
-                .append("text")
-                .attr("id", "ylabel")
-                .attr("class", "label")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 5)
-                .attr("x", -height/2)
-                .attr("dy", ".71em")
-                .style("text-anchor", "right")
-                .style("font-size", "16px")
-                .text(yLabel);
-
-            // draw dots
-            svg.selectAll(".dot")
-                .data(data)
-                .enter().append("g").attr("class","dot")
-                .append("circle")
+            //var feature = g.selectAll("circle")
+            feature = g.selectAll("circle")
+                .data(collection)
+                .enter().append("circle")
+                .style("stroke", "black")
+                .style("opacity", .6)
+                .style("fill", "red")
                 .attr("r", 5)
-                .attr("cx", xMap)
-                .attr("cy", yMap)
-                .style("fill", function(d) {
-                    //console.log(d);
-
-                    return color(cValue(d));})
                 .attr("class", function(d){
                     return "circle_" + getClassString(cValue(d));
-                })
-                .on("mouseover", function(d) {
-                    d3.select(this).style("fill", "red").attr("r", 15);
-                    tooltip.transition()
-                        .duration(200)
-                        .style("opacity", .9);
-
-                    tooltip.html(d[colorBy] + "<br/> (" + xValue(d)
-                        + ", " + yValue(d) + ")")
-                        .style("left", (d3.event.pageX + 5) + "px")
-                        .style("top", (d3.event.pageY - 28) + "px");
-                })
-                .on("mouseout", function(d) {
-                    d3.select(this).style("fill", color(cValue(d))).attr("r", 5);
-                    tooltip.transition()
-                        .duration(200)
-                        .style("opacity", 0);
                 });
 
-            // draw legend
-            var svgLegend = d3.selectAll("#idSidebarRight").append("svg")
-                // .attr("width", 200 - margin.left - margin.right)
-            // .attr("height", 600 - margin.top - margin.bottom +15)
-                .attr("width", 400)
-                .attr("height", 600)
-                .append("g")
-                //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            map.on("viewreset", updateMap);
+            updateMap();
+        }
+        function updateMap() {
+            feature.attr("transform",
+                function(d) {
+                    return "translate("+
+                        map.latLngToLayerPoint(d.LatLng).x +","+
+                        map.latLngToLayerPoint(d.LatLng).y +")";
+                }
+            ).attr("r",(map.getZoom()+2)/2)
+        }
+        function loadAxisOptions(pOptions, axis) {
+            var options = pOptions;
+            var sel = d3.select("#" + axis + "AxisMenu");
 
-            var legend = svgLegend.selectAll(".legend")
-                .data(color.domain())
-                .enter().append("g")
-                .attr("class", "legend")
-                .attr("transform", function(d, i) {return "translate(0," + i * 20 + ")"; });
+            sel.on('change', function() {
+                redraw1(document.getElementById("colorMenu").value);
+                // changeXAxis();
+                // changeYAxis();
+
+            });
+            sel.selectAll("option").remove();
+
+            for (var i = 0; i < options.length; i++) {
+                sel.append("option")
+                    .attr("value", options[i])
+                    .text(options[i])
+            }
+        }
+        function loadColorByOptions(pOptions) {
+            var options = pOptions;
+            var sel = d3.select("#colorMenu");
+            //sel.selectAll("option").remove();
+
+            d3.select('#colorMenu')
+                .on('change', function() {
+                    // var newColorCategory = eval(d3.select(this).property('value'));
+                    // console.log(newColorCategory);
+                    redraw1(document.getElementById("colorMenu").value);
+                });
+
+            //sel.on("change",redraw1(document.getElementById("colorMenu").value));
+            for (var i = 0; i < options.length; i++) {
+                sel.append("option")
+                    .attr("value", options[i])
+                    .text(options[i])
+
+            }
+        }
+        function loadDistinctCountOptions(pOptions){
+            var options = pOptions;
+            sel = d3.select("#dropdown");
+            for (var i = 0; i < options.length; i++) {
+                sel.append("option")
+                    .attr("value", options[i])
+                    .text(options[i])
+            }
+
+            // var selector = d3.select("#drop")
+            //     .append("select")
+            //     .attr("id", "dropdown")
+            //     .on("change", function(){
+            //         var selection = document.getElementById("dropdown");
+            //         attributeName = selection.value;
+            //     });
+
+        }
+        function drawLegend(legend){
 
             // draw legend colored rectangles
             legend.append("rect")
@@ -310,97 +311,118 @@
                 .style("font-size","10px")
                 .text(function(d) { return d;})
 
-            // highlightCircle = function(d){
-            //     var class_name = ".circle_"+ getClassString(d);
-            //     d3.selectAll("circle").transition().duration(200).style("opacity", 0);
-            //     d3.selectAll(class_name).transition().duration(200).style("opacity", 1);
-            // }
-        });
-
-        //bar(colorBy,cValue,color);
-    }
-
-    d3.csv("./csv/data_mod.csv", function(collection) {
-
-        var feature = new Object();
-        var dataValues = Object.keys(d3.values(collection)[0]);
-
-        //Load Options
-
-        loadAxisOptions(dataValues, "x"); //Options for xAxis
-        loadAxisOptions(dataValues, "y"); //Options for xAxis
-        loadColorByOptions(dataValues);   //Options for Color Code
-        loadDistinctCountOptions(dataValues);   //Options for Distinct Count Column
-
-        drawMap();
-        //console.log(collection)
-        function drawMap(){
-            var svg = d3.select("#map").select("svg"),
-                g = svg.append("g");
-
-            collection.forEach(function(d) {
-                d.LatLng = new L.LatLng(d.lat,d.lon)
-            })
-
-            //var feature = g.selectAll("circle")
-            feature = g.selectAll("circle")
-                .data(collection)
-                .enter().append("circle")
-                .style("stroke", "black")
-                .style("opacity", .6)
-                .style("fill", "red")
-                .attr("r", 5);
-
-            map.on("viewreset", updateMap);
-            updateMap();
         }
-        function updateMap() {
-            feature.attr("transform",
-                function(d) {
-                    return "translate("+
-                        map.latLngToLayerPoint(d.LatLng).x +","+
-                        map.latLngToLayerPoint(d.LatLng).y +")";
-                }
-            ).attr("r",(map.getZoom()+2)/2)
-        }
-        function loadAxisOptions(pOptions, axis) {
-            var options = pOptions;
-            var sel = d3.select("#" + axis + "AxisMenu");
-            sel.selectAll("option").remove();
+        function redraw1(colorBy){
+            d3.select("#plot").select("svg").remove()
+            var shipData = collection;
+            var data = collection;
+            console.log("redraw1");
 
-            for (var i = 0; i < options.length; i++) {
-                sel.append("option")
-                    .attr("value", options[i])
-                    .text(options[i])
-            }
-        }
-        function loadColorByOptions(pOptions) {
-            var options = pOptions;
-            var sel = d3.select("#colorMenu");
-            //sel.selectAll("option").remove();
-            for (var i = 0; i < options.length; i++) {
-                sel.append("option")
-                    .attr("value", options[i])
-                    .text(options[i])
-            }
-        }
-        function loadDistinctCountOptions(pOptions){
-            var options = pOptions;
-            sel = d3.select("#dropdown");
-            for (var i = 0; i < options.length; i++) {
-                sel.append("option")
-                    .attr("value", options[i])
-                    .text(options[i])
-            }
+            // setup fill color
+            var cValue = function(d) { return d[colorBy];},
+                color = d3.scale.category10();
 
-            // var selector = d3.select("#drop")
-            //     .append("select")
-            //     .attr("id", "dropdown")
-            //     .on("change", function(){
-            //         var selection = document.getElementById("dropdown");
-            //         attributeName = selection.value;
-            //     });
+            // add the graph canvas to the body of the webpage
+            var svg = d3.select("#plot").append("svg")
+                .attr("width", width + margin.left + margin.right + 25)
+                .attr("height", height + margin.top + margin.bottom +15)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+            // add the tooltip area to the webpage
+            var tooltip = d3.select("#plot").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
+
+            d3.selectAll("#idSidebarRight").selectAll("svg").remove();//.transition().delay(500);
+
+
+                // don't want dots overlapping axis, so add in buffer to data domain
+                xScale.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1]);
+                yScale.domain([d3.min(data, yValue)-1, d3.max(data, yValue)+1]);
+                // x-axis
+                svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("id", "xaxis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .append("text")
+                    .attr("id", "xlabel")
+                    .attr("class", "label")
+                    .attr("x", width/2)
+                    .attr("y", 35)
+                    .style("text-anchor", "end")
+                    .style("font-size", "16px")
+                    .text(xLabel);
+                // y-axis
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis)
+                    .append("text")
+                    .attr("id", "ylabel")
+                    .attr("class", "label")
+                    .attr("transform", "rotate(-90)")
+                    .attr("y", 5)
+                    .attr("x", -height/2)
+                    .attr("dy", ".71em")
+                    .style("text-anchor", "right")
+                    .style("font-size", "16px")
+                    .text(yLabel);
+
+                // draw dots
+                svg.selectAll(".dot")
+                    .data(data)
+                    .enter().append("g").attr("class","dot")
+                    .append("circle")
+                    .attr("r", 5)
+                    .attr("cx", xMap)
+                    .attr("cy", yMap)
+                    .style("fill", function(d) {
+                        //console.log(d);
+
+                        return color(cValue(d));})
+                    .attr("class", function(d){
+                        return "circle_" + getClassString(cValue(d));
+                    })
+                    .on("mouseover", function(d) {
+                        d3.select(this).style("fill", "red").attr("r", 15);
+                        tooltip.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+
+                        tooltip.html(d[colorBy] + "<br/> (" + xValue(d)
+                            + ", " + yValue(d) + ")")
+                            .style("left", (d3.event.pageX + 5) + "px")
+                            .style("top", (d3.event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function(d) {
+                        d3.select(this).style("fill", color(cValue(d))).attr("r", 5);
+                        tooltip.transition()
+                            .duration(200)
+                            .style("opacity", 0);
+                    });
+
+                // draw legend
+
+                var svgLegend = d3.selectAll("#idSidebarRight").append("svg")
+                // .attr("width", 200 - margin.left - margin.right)
+                // .attr("height", 600 - margin.top - margin.bottom +15)
+                    .attr("width", 400)
+                    .attr("height", 600)
+                    .append("g")
+                //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                var legend = svgLegend.selectAll(".legend")
+                    .data(color.domain())
+                    .enter().append("g")
+                    .attr("class", "legend")
+                    .attr("transform", function(d, i) {return "translate(0," + i * 20 + ")"; });
+
+                // draw legend colored rectangles
+                drawLegend(legend);
+
+
+            //bar(colorBy,cValue,color);
         }
     })
 </script>
