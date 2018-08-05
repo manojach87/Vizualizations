@@ -515,12 +515,12 @@
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-            var country_map = new Map();
-            var actualCount_country_map = new Map();
+            var ship_map = new Map();
+            var distinct_ship_map = new Map();
 
             data.forEach(function(d){
-                //var stylesArray = country_map.get(d.country);
-                var stylesArray = country_map.get(d[colorBy]);
+                //var stylesArray = ship_map.get(d.country);
+                var stylesArray = ship_map.get(d[colorBy]);
                 //console.log(d[colorBy]);
 
                 if (stylesArray == undefined)
@@ -528,7 +528,7 @@
                 var style;
                 style=d[attributeName];
                 stylesArray.push(style);
-                country_map.set(d[colorBy], stylesArray);
+                ship_map.set(d[colorBy], stylesArray);
             })
             ;
 
@@ -537,18 +537,18 @@
             }
 
 
-            country_map.forEach(function (value, key) {
+            ship_map.forEach(function (value, key) {
                 var newValue = value.filter(onlyUnique);
-                actualCount_country_map.set(key, newValue.length);
+                distinct_ship_map.set(key, newValue.length);
             });
 
-            var iterator = actualCount_country_map.keys();
-            //console.log(actualCount_country_map.size);
-            for (var i = 0; i < actualCount_country_map.size; i++) {
+            var iterator = distinct_ship_map.keys();
+            //console.log(distinct_ship_map.size);
+            for (var i = 0; i < distinct_ship_map.size; i++) {
                 var key = iterator.next().value;
                 var tmp = new Object();
                 tmp[colorBy]=key;
-                tmp["value"]=+actualCount_country_map.get(key);
+                tmp["value"]=+distinct_ship_map.get(key);
                 //console.log(tmp)
                 shipData.push(tmp);
                 console.log("shipData Next");
@@ -693,48 +693,48 @@
                 return d;
             });
 
-        var country_map = new Map();
-        var actualCount_country_map = new Map();
+        var ship_map = new Map();
+        var distinct_ship_map = new Map();
 
         for( var i = 0; i<data.length; i++){
             //console.log(data[i])
-            var stylesArray = country_map.get(data[colorBy]);
+            var stylesArray = ship_map.get(data[colorBy]);
             if (stylesArray == undefined)
                 stylesArray = new Array();
             var style = data[colorBy];
             stylesArray.push(style);
-            country_map.set(data[colorBy], stylesArray);
+            ship_map.set(data[colorBy], stylesArray);
         }
         data.forEach(function (d) {
-            //var stylesArray = country_map.get(d.country);
-            var stylesArray = country_map.get(d[colorBy]);
+            //var stylesArray = ship_map.get(d.country);
+            var stylesArray = ship_map.get(d[colorBy]);
             if (stylesArray == undefined)
                 stylesArray = new Array();
             //var style = d[attributeName];
             var style = d[document.getElementById("dropdown").value];
             stylesArray.push(style);
-            //country_map.set(d.country, stylesArray);
-            country_map.set(d[colorBy], stylesArray);
+            //ship_map.set(d.country, stylesArray);
+            ship_map.set(d[colorBy], stylesArray);
         });
 
         function onlyUnique(value, index, self) {
             return self.indexOf(value) === index;
         }
-        console.log(country_map);
-        country_map.forEach(function (value, key) {
+        console.log(ship_map);
+        ship_map.forEach(function (value, key) {
             var newValue = value.filter(onlyUnique);
-            actualCount_country_map.set(key, newValue.length);
+            distinct_ship_map.set(key, newValue.length);
 
         });
 
-        var iterator = actualCount_country_map.keys();
-        //console.log(actualCount_country_map.size);
-        for (var i = 0; i < actualCount_country_map.size; i++) {
+        var iterator = distinct_ship_map.keys();
+        //console.log(distinct_ship_map.size);
+        for (var i = 0; i < distinct_ship_map.size; i++) {
             var key = iterator.next().value;
 
             var tmp = new Object();
             tmp[colorBy]=key;
-            tmp["value"]=+actualCount_country_map.get(key);
+            tmp["value"]=+distinct_ship_map.get(key);
             //console.log(tmp)
             shipData.push(tmp)
         }
