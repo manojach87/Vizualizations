@@ -5,13 +5,11 @@
   
         if(isNaN(itr[St])) {
         		itr[St]=0
-        		
         }
         if(St!=d.St) { 
         	console.log(d.St);
         }
         else {
-        
         	itr[St]+= 1;
         }
         St=d.St;
