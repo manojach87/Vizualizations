@@ -1,7 +1,7 @@
   var St="";
   var idx = [];
   var itr = [];
-  var data=d3.csv("./us_cities_states_counties1.csv", function(d){ 
+  var data=d3.csv("./data/us_cities_states_counties1.csv", function(d){ 
   
         if(isNaN(itr[St])) {
         		itr[St]=0
